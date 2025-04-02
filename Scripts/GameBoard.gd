@@ -3,7 +3,7 @@ extends Node2D
 @onready var tile_map = $TileMap  # ✅ Reference to TileMap
 @onready var resource_manager = preload("res://Scripts/ResourceManager.gd").new()  # ✅ Load ResourceManager script
 
-var number_values = [2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 12]  # ✅ 18 values only
+var number_values = [2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 12]  
 
 
 func _ready():

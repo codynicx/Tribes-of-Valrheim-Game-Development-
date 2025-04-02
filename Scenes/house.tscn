@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2a3q36bxodsw"]
+
+[ext_resource type="Texture2D" uid="uid://ctp8ly46s671d" path="res://Assets/288ppi/house.png" id="1_d3g2w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8slp"]
+radius = 102.044
+
+[node name="House" type="Area2D"]
+
+[node name="house_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_d3g2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p8slp")

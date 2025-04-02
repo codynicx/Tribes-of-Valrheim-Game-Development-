@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=3 uid="uid://b0jsefipj7fkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kspoa"]
+albedo_color = Color(0.917647, 0.901961, 0.392157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_64g3s"]
+material = SubResource("StandardMaterial3D_kspoa")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksgbb"]
+albedo_color = Color(0.780392, 0.403922, 0.14902, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cvkb7"]
+material = SubResource("StandardMaterial3D_ksgbb")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1h3q"]
+albedo_color = Color(0.47451, 0.47451, 0.47451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_es1ff"]
+material = SubResource("StandardMaterial3D_g1h3q")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7uus"]
+albedo_color = Color(0.960784, 0, 0.109804, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1dpi2"]
+material = SubResource("StandardMaterial3D_j7uus")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2bal"]
+albedo_color = Color(0.74902, 0.6, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xnaib"]
+material = SubResource("StandardMaterial3D_y2bal")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqpb1"]
+albedo_color = Color(0.321569, 0.321569, 0.321569, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iihdr"]
+material = SubResource("StandardMaterial3D_xqpb1")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qvlj"]
+albedo_color = Color(0.278431, 0.513726, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jejko"]
+material = SubResource("StandardMaterial3D_8qvlj")
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 6
+
+[node name="ResourceMeshes" type="Node3D"]
+
+[node name="WoolMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_64g3s")
+skeleton = NodePath("")
+
+[node name="WoodMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_cvkb7")
+
+[node name="StoneMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_es1ff")
+
+[node name="MeatMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_1dpi2")
+
+[node name="WheatMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_xnaib")
+
+[node name="IronMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_iihdr")
+
+[node name="YggdrasilMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_jejko")

@@ -32,7 +32,7 @@ func assign_resources_and_numbers(hex_tiles: Array, number_values: Array) -> Dic
 		var resource_id = available_resources[assigned_tiles.size() % available_resources.size()]
 		assigned_tiles[tile_pos] = resource_types[resource_id]  # ✅ Assign resource
 
-	# ✅ Assign number tokens (only to resource tiles, skipping the desert tile)
+	# ✅ Assign number tokens (only to resource tiles, skipping the yssagril tile)
 	var tiles_with_numbers = assigned_tiles.keys()
 	tiles_with_numbers.shuffle()  # ✅ Shuffle order
 

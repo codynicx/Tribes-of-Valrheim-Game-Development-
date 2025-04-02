@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://6n1bw4ebyy4q"]
+[gd_scene load_steps=22 format=3 uid="uid://6n1bw4ebyy4q"]
 
 [ext_resource type="Texture2D" uid="uid://doeh1rn76cl5x" path="res://Assets/288ppi/water.png" id="1_5t51i"]
 [ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="1_pw80p"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dqcmh33yqjby1" path="res://Assets/288ppi/wheat.png" id="4_idwd3"]
 [ext_resource type="Texture2D" uid="uid://dnxapx3tor2m0" path="res://Assets/288ppi/Yggdrasil_1.png" id="5_jkmp7"]
 [ext_resource type="Script" path="res://Scripts/ResourceManager.gd" id="10_si4ue"]
+[ext_resource type="Script" path="res://Scenes/HousePlacement.gd" id="13_mxf4f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1u07"]
 texture = ExtResource("1_5t51i")
@@ -69,6 +70,9 @@ script = ExtResource("1_pw80p")
 
 [node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
+custom_minimum_size = Vector2(100, 0)
+offset_right = 1160.0
+offset_bottom = 649.0
 color = Color(0.247059, 0.454902, 1, 1)
 script = ExtResource("2_gjdjc")
 
@@ -76,9 +80,12 @@ script = ExtResource("2_gjdjc")
 anchor_mode = 0
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(598, 348)
+position = Vector2(593, 354)
 tile_set = SubResource("TileSet_3h3un")
 collision_visibility_mode = 1
 format = 2
-layer_0/tile_data = PackedInt32Array(-131073, 4, 0, -196608, 2, 0, -65538, 3, 0, 131070, 6, 0, 65536, 2, 0, 65534, 3, 0, -2, 4, 0, -131072, 5, 0, -65537, 6, 0, -131074, 7, 0, -131071, 7, 0, 131071, 7, 0, -3, 7, 0, -65536, 3, 0, 0, 4, 0, 65535, 5, 0, -1, 1, 0, 1, 6, 0, -65535, 4, 0)
+layer_0/tile_data = PackedInt32Array(-131073, 4, 0, -196608, 2, 0, -65538, 3, 0, 131070, 6, 0, 65536, 2, 0, 65534, 3, 0, -2, 4, 0, -131072, 5, 0, -65537, 6, 0, -131074, 7, 0, -131071, 7, 0, 131071, 7, 0, -3, 7, 0, -65536, 3, 0, 0, 4, 0, 65535, 1, 0, -1, 7, 0, 1, 6, 0, -65535, 4, 0)
 script = ExtResource("10_si4ue")
+
+[node name="HousePlacement" type="Node2D" parent="."]
+script = ExtResource("13_mxf4f")

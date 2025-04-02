@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxgy5juc36g07"]
+
+[ext_resource type="Script" path="res://Scripts/HexGrid.gd" id="1_maxkl"]
+[ext_resource type="Shader" path="res://Scenes/game_board_3d.gdshader" id="3_6m3lk"]
+[ext_resource type="PackedScene" uid="uid://b0jsefipj7fkd" path="res://Scenes/ResourceMeshes.tscn" id="3_pygd3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ooj2t"]
+render_priority = 0
+shader = ExtResource("3_6m3lk")
+shader_parameter/wave_speed = 1.0
+shader_parameter/wave_amplitude = 0.1
+shader_parameter/wave_frequency = 4.0
+shader_parameter/time_factor = 1.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sqoo1"]
+material = SubResource("ShaderMaterial_ooj2t")
+size = Vector2(500, 500)
+
+[node name="GameBoard3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11352, 0.14671, 0.224033)
+script = ExtResource("1_maxkl")
+hex_scene = ExtResource("3_pygd3")
+grid_radius = null
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.50502e-06, -1.54972e-06)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Bg_water" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_sqoo1")
+
+[node name="ResourceMeshes" parent="." instance=ExtResource("3_pygd3")]
