@@ -5,3 +5,4 @@ extends Node3D
 
 func _ready():
 	hex_field.setup(resource_meshes)
+	#testing
