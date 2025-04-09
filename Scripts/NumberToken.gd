@@ -9,4 +9,3 @@ func _ready():
 		label.text = str(number)
 	else:
 		push_error("Label node not found in NumberToken scene!")
-	
