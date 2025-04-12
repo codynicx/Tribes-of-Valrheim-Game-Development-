@@ -2,6 +2,7 @@ extends Node3D
 
 @export var hex_scene: PackedScene
 @export var number_token_scene: PackedScene
+@export var sand: PackedScene
 @export var grid_radius: int = 2
 
 var hex_scale_factor: float = 1.5
@@ -23,6 +24,7 @@ var used_numbers: Array = []
 
 func setup(resource_meshes: Node) -> void:
 	_load_resource_meshes(resource_meshes)
+	_spawn_sand_background() 
 	_generate_hex_grid()
 	_place_yggdrasil()
 
@@ -55,7 +57,7 @@ func _generate_hex_grid() -> void:
 			if abs(q + r) > grid_radius or (q == 0 and r == 0):
 				continue
 
-			var hex_position: Vector3 = Vector3(hex_width * (q + r * 0.5), 0, hex_height * r)  # Renamed to hex_position
+			var hex_position: Vector3 = Vector3(hex_width * (q + r * 0.5), 0.1, hex_height * r )  # Renamed to hex_position
 			_spawn_hex_tile(hex_position, resource_pool[i], numbers)
 			i += 1
 
@@ -63,7 +65,7 @@ func _generate_hex_grid() -> void:
 func _spawn_hex_tile(hex_position: Vector3, resource: String, numbers: Array) -> void:  # Renamed to hex_position
 	var hex_instance: Node3D = hex_scene.instantiate()
 	hex_instance.position = hex_position
-	hex_instance.scale = Vector3(hex_scale_factor, 1, hex_scale_factor)
+	hex_instance.scale = Vector3(hex_scale_factor, 2, hex_scale_factor)
 	add_child(hex_instance)
 
 	# Add resource mesh
@@ -91,7 +93,9 @@ func _spawn_hex_tile(hex_position: Vector3, resource: String, numbers: Array) ->
 # Function to place Yggdrasil at the center of the grid
 func _place_yggdrasil() -> void:
 	var yggdrasil_instance: Node3D = hex_scene.instantiate()
-	yggdrasil_instance.position = Vector3.ZERO
+	#yggdrasil_instance.position = Vector3.ZERO
+	yggdrasil_instance.position = Vector3(0, 0.2, 0)
+	#yggdrasil_instance.scale = Vector3(5, 1, 5)  # Adjust size as needed
 	yggdrasil_instance.scale = Vector3(hex_scale_factor, 1, hex_scale_factor)
 	add_child(yggdrasil_instance)
 
@@ -100,3 +104,11 @@ func _place_yggdrasil() -> void:
 		var mesh_instance: MeshInstance3D = MeshInstance3D.new()
 		mesh_instance.mesh = mesh.duplicate(true)
 		yggdrasil_instance.add_child(mesh_instance)
+
+func _spawn_sand_background() -> void:
+	var sand_instance: Node3D = sand.instantiate()
+	# Make it big enough to cover the grid
+	sand_instance.scale = Vector3(20.2, 1, 17.5)  # Adjust size as needed
+	# Position it slightly below the tiles
+	sand_instance.position = Vector3(-0.8, 0.1, 12.6)
+	add_child(sand_instance)

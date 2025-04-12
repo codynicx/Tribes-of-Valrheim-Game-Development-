@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://digitukubwipd"]
 
-[ext_resource type="Script" path="res://Scripts/NumberToken.gd" id="1_j5dqd"]
+[ext_resource type="Script" uid="uid://ctocx0tamfxgs" path="res://Scripts/NumberToken.gd" id="1_j5dqd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjlnf"]
 albedo_color = Color(0.933333, 0.933333, 0.933333, 1)
@@ -17,5 +17,5 @@ transform = Transform3D(0.799999, 0, -0.00139626, 0, 0.8, 0, 0.00139626, 0, 0.79
 mesh = SubResource("CylinderMesh_hmbu7")
 
 [node name="Label" type="Label3D" parent="."]
-transform = Transform3D(2, -1.74846e-07, -7.64274e-15, 0, 8.74228e-08, -2, -1.74846e-07, -2, -8.74228e-08, 0.0187553, 0.0214126, 0.0386752)
+transform = Transform3D(2, -1.74846e-07, -7.64274e-15, 0, 8.74228e-08, -2, -1.74846e-07, -2, -8.74228e-08, 0.00179092, 0.0214126, -0.0148322)
 text = "1"

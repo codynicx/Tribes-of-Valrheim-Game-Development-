@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c71wo0imkhqta"]
+[gd_scene load_steps=10 format=3 uid="uid://c71wo0imkhqta"]
 
-[ext_resource type="Script" path="res://Scripts/GameBoard3d.gd" id="1_byx7t"]
-[ext_resource type="Shader" path="res://Scenes.tscn/game_board_3d.gdshader" id="2_ggfuc"]
-[ext_resource type="Script" path="res://Scripts/HexField.gd" id="3_8ne02"]
+[ext_resource type="Script" uid="uid://bo743cnaossnv" path="res://Scripts/GameBoard3d.gd" id="1_byx7t"]
+[ext_resource type="Shader" uid="uid://dm52g0n6lftxi" path="res://Scenes.tscn/game_board_3d.gdshader" id="2_ggfuc"]
+[ext_resource type="Script" uid="uid://yxlw4hfmrclw" path="res://Scripts/HexField.gd" id="3_8ne02"]
 [ext_resource type="PackedScene" uid="uid://b0jsefipj7fkd" path="res://Scenes.tscn/ResourceMeshes.tscn" id="4_8c5g8"]
 [ext_resource type="PackedScene" uid="uid://digitukubwipd" path="res://Scenes.tscn/number_token3d.tscn" id="5_3lg8t"]
-[ext_resource type="Script" path="res://Scripts/CameraButton.gd" id="6_kki3j"]
+[ext_resource type="Script" uid="uid://bgdvu5a6vn0wt" path="res://Scripts/CameraButton.gd" id="6_kki3j"]
+[ext_resource type="PackedScene" uid="uid://ctpkqukaiyp3f" path="res://Scenes.tscn/Sand.tscn" id="6_xc3r8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ooj2t"]
 render_priority = 0
@@ -36,6 +37,9 @@ mesh = SubResource("PlaneMesh_sqoo1")
 script = ExtResource("3_8ne02")
 hex_scene = ExtResource("4_8c5g8")
 number_token_scene = ExtResource("5_3lg8t")
+sand = ExtResource("6_xc3r8")
+
+[node name="Sand" parent="." instance=ExtResource("6_xc3r8")]
 
 [node name="ResourceMeshes" parent="." instance=ExtResource("4_8c5g8")]
 
