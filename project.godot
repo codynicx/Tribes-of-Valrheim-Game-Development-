@@ -15,6 +15,10 @@ run/main_scene="res://Scenes.tscn/game_board_3d.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+HexField="*res://Scripts/HexField.gd"
+
 [input]
 
 rotate_camera={
