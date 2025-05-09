@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8o23n7oqhgjb"]
+
+[ext_resource type="Script" path="res://Scenes.tscn/road_3d.gd" id="1_vl1ed"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r06db"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_updu4"]
+material = SubResource("StandardMaterial3D_r06db")
+size = Vector3(1.5, 0.5, 0.5)
+
+[node name="Road3d" type="Node3D"]
+script = ExtResource("1_vl1ed")
+
+[node name="RoadMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_updu4")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://digitukubwipd"]
 
-[ext_resource type="Script" uid="uid://ctocx0tamfxgs" path="res://Scripts/NumberToken.gd" id="1_j5dqd"]
+[ext_resource type="Script" path="res://Scripts/NumberToken.gd" id="1_j5dqd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjlnf"]
 albedo_color = Color(0.933333, 0.933333, 0.933333, 1)

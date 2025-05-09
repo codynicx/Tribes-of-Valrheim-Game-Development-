@@ -4,7 +4,7 @@ extends Node3D
 @export var number_token_scene: PackedScene
 @export var sand: PackedScene
 @export var city: PackedScene
-@export var grid_radius: int = 2
+@export var grid_radius: int = 2 # defines how large the hex grid will be
 
 var hex_scale_factor: float = 1.5
 var resource_types: Array = ["Stone", "Wood", "Wool", "Meat", "Wheat", "Iron"]
@@ -18,6 +18,7 @@ var resource_distribution: Dictionary = {
 }
 var resource_mesh_instances: Dictionary = {}
 var used_numbers: Array = []
+var hex_positions: Array = [] # Store positions of all hex tiles
 var placed_city_positions: Dictionary = {}
 var is_dragging = false
 
@@ -39,13 +40,11 @@ func _generate_hex_grid() -> void:
 	var hex_height: float = sqrt(3) * hex_scale_factor
 	var numbers: Array = [2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 12]
 
-	# Prepare balanced resource list
 	var resource_pool: Array = []
 	for resource_name in resource_distribution.keys():
 		var count: int = resource_distribution[resource_name]
 		for i in range(count):
 			resource_pool.append(resource_name)
-
 	resource_pool.shuffle()
 
 	var i: int = 0
@@ -53,9 +52,9 @@ func _generate_hex_grid() -> void:
 		for r in range(-grid_radius, grid_radius + 1):
 			if abs(q + r) > grid_radius or (q == 0 and r == 0):
 				continue
-
-			var hex_position: Vector3 = Vector3(hex_width * (q + r * 0.5), 0.1, hex_height * r )  # Renamed to hex_position
+			var hex_position: Vector3 = Vector3(hex_width * (q + r * 0.5), 0.1, hex_height * r)
 			_spawn_hex_tile(q, r, hex_position, resource_pool[i], numbers)
+			hex_positions.append(hex_position)
 			i += 1
 
 # Function to spawn a hex tile
@@ -64,15 +63,25 @@ func _spawn_hex_tile(q: int, r: int, hex_position: Vector3, resource: String, nu
 	hex_instance.position = hex_position
 	hex_instance.scale = Vector3(hex_scale_factor, 2, hex_scale_factor)
 	add_child(hex_instance)
+	hex_instance.add_to_group("hexes")
 
-	# Add resource mesh
 	var mesh: Mesh = resource_mesh_instances.get(resource, null)
 	if mesh:
 		var mesh_instance: MeshInstance3D = MeshInstance3D.new()
 		mesh_instance.mesh = mesh.duplicate(true)
 		hex_instance.add_child(mesh_instance)
 
-	# Add number token
+		# 🔧 Add collision shape to detect raycast clicks
+		var body := StaticBody3D.new()
+		var collider := CollisionShape3D.new()
+		var shape := CylinderShape3D.new()
+		shape.radius = 1.0 * hex_scale_factor
+		shape.height = 1.0
+		collider.shape = shape
+		body.add_child(collider)
+		body.position.y = 0.1  # Align with tile surface
+		hex_instance.add_child(body)
+
 	if numbers.size() > 0:
 		var number: int = numbers.pick_random()
 		numbers.erase(number)
@@ -101,9 +110,19 @@ func _place_yggdrasil() -> void:
 
 func _spawn_sand_background() -> void:
 	var sand_instance: Node3D = sand.instantiate()
-	sand_instance.scale = Vector3(20.2, 1, 17.5)  
+	sand_instance.scale = Vector3(20.2, 1, 17.5)
 	sand_instance.position = Vector3(-0.8, 0.1, 12.6)
 	add_child(sand_instance)
+
+# New function to get hex tile edges for valid road placement
+func get_hex_edges() -> Array:
+	var edges: Array = []
+	for pos in hex_positions:
+		for i in range(6):
+			var angle: float = float(i) * PI / 3.0
+			var edge_pos: Vector3 = pos + Vector3(cos(angle) * hex_scale_factor, 0, sin(angle) * hex_scale_factor)
+			edges.append(edge_pos)
+	return edges
 
 func spawn_cities():
 	for hex in get_children():

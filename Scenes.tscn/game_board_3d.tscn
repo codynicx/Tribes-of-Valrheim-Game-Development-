@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://c71wo0imkhqta"]
+[gd_scene load_steps=13 format=3 uid="uid://c71wo0imkhqta"]
 
-[ext_resource type="Script" uid="uid://bo743cnaossnv" path="res://Scripts/GameBoard3d.gd" id="1_byx7t"]
-[ext_resource type="Shader" uid="uid://dm52g0n6lftxi" path="res://Scenes.tscn/game_board_3d.gdshader" id="2_ggfuc"]
-[ext_resource type="Script" uid="uid://yxlw4hfmrclw" path="res://Scripts/HexField.gd" id="3_8ne02"]
+[ext_resource type="Script" path="res://Scripts/GameBoard3d.gd" id="1_byx7t"]
+[ext_resource type="Shader" path="res://Scenes.tscn/game_board_3d.gdshader" id="2_ggfuc"]
+[ext_resource type="Script" path="res://Scripts/HexField.gd" id="3_8ne02"]
 [ext_resource type="PackedScene" uid="uid://b0jsefipj7fkd" path="res://Scenes.tscn/ResourceMeshes.tscn" id="4_8c5g8"]
 [ext_resource type="PackedScene" uid="uid://digitukubwipd" path="res://Scenes.tscn/number_token3d.tscn" id="5_3lg8t"]
-[ext_resource type="Script" uid="uid://bgdvu5a6vn0wt" path="res://Scripts/CameraButton.gd" id="6_kki3j"]
-[ext_resource type="PackedScene" uid="uid://ctpkqukaiyp3f" path="res://Scenes.tscn/Sand.tscn" id="6_xc3r8"]
+[ext_resource type="Script" path="res://Scripts/CameraButton.gd" id="6_kki3j"]
+[ext_resource type="PackedScene" path="res://Scenes.tscn/Sand.tscn" id="6_xc3r8"]
+[ext_resource type="PackedScene" uid="uid://c8o23n7oqhgjb" path="res://Scenes.tscn/road_3d.tscn" id="8_jeorx"]
+[ext_resource type="Script" path="res://Scripts/RoadPlacer.gd" id="8_wj653"]
+[ext_resource type="Texture2D" uid="uid://ctp8ly46s671d" path="res://Assets/288ppi/house.png" id="10_o7khx"]
 [ext_resource type="PackedScene" uid="uid://di6m3v7xeqo1i" path="res://Scenes.tscn/Placements.tscn" id="7_o1yq4"]
 [ext_resource type="PackedScene" uid="uid://cotk3ogwy4aut" path="res://Scenes.tscn/City.tscn" id="9_bq8e0"]
 
@@ -64,8 +67,12 @@ offset_right = 96.0
 offset_bottom = 6.75201
 grow_horizontal = 2
 grow_vertical = 0
-text = "Flat Angle"
+text = "Change View"
 script = ExtResource("6_kki3j")
+
+[node name="RoadPlacer" type="Node3D" parent="."]
+script = ExtResource("8_wj653")
+road_scene = ExtResource("8_jeorx")
 
 [node name="CityButton" type="Button" parent="."]
 offset_left = 459.0
@@ -79,5 +86,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.50502e-06, -1.54972e-06
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+
+[node name="CanvasLayer - UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Control" parent="CanvasLayer - UI"]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -24.0
+offset_right = -1.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer - UI/Panel"]
+layout_mode = 0
+offset_top = -32.0
+offset_right = 76.0
+offset_bottom = 69.0
+
+[node name="Road" type="Button" parent="CanvasLayer - UI/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Road"
+
+[node name="House" type="Button" parent="CanvasLayer - UI/Panel/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("10_o7khx")
+
+[node name="Warriors" type="Button" parent="CanvasLayer - UI/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Warriors"
+
+[connection signal="pressed" from="CanvasLayer - UI/Panel/VBoxContainer/Road" to="." method="_on_road_pressed"]
 
 [connection signal="pressed" from="CityButton" to="." method="_on_city_button_pressed"]
