@@ -52,7 +52,7 @@ func assign_resources_and_numbers(hex_tiles: Array, number_values: Array) -> Dic
 	return tile_data  # ✅ Return assigned data
 
 func place_number_token(tile_pos, number_value):
-	var token_scene = preload("res://Scenes/number_token.tscn").instantiate()
+	var token_scene = preload("res://Scenes.tscn/number_token3d.tscn").instantiate()
 	token_scene.position = map_to_local(tile_pos)  # ✅ Attach to correct tile position
 	token_scene.get_node("NumberLabel").text = str(number_value)  # ✅ Assign the number
 	add_child(token_scene)  # ✅ Attach **directly to TileMap**
