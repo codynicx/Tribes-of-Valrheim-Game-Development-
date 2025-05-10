@@ -4,7 +4,7 @@ extends Node3D
 @export var number_token_scene: PackedScene
 @export var sand: PackedScene
 @export var city: PackedScene
-@export var grid_radius: int = 2 # defines how large the hex grid will be
+@export var grid_radius: int = 2 # defines how large the hex grid will be # defines how large the hex grid will be
 
 var hex_scale_factor: float = 1.5
 var resource_types: Array = ["Stone", "Wood", "Wool", "Meat", "Wheat", "Iron"]
@@ -21,6 +21,7 @@ var used_numbers: Array = []
 var hex_positions: Array = [] # Store positions of all hex tiles
 var placed_city_positions: Dictionary = {}
 var is_dragging = false
+var hex_positions: Array = [] # Store positions of all hex tiles
 
 func setup(resource_meshes: Node) -> void:
 	_load_resource_meshes(resource_meshes)
@@ -53,7 +54,7 @@ func _generate_hex_grid() -> void:
 			if abs(q + r) > grid_radius or (q == 0 and r == 0):
 				continue
 			var hex_position: Vector3 = Vector3(hex_width * (q + r * 0.5), 0.1, hex_height * r)
-			_spawn_hex_tile(q, r, hex_position, resource_pool[i], numbers)
+			_spawn_hex_tile(hex_position, resource_pool[i], numbers)
 			hex_positions.append(hex_position)
 			i += 1
 
@@ -159,3 +160,13 @@ func _snap_position(pos: Vector3) -> String:
 	var snapped_x = snapped(pos.x, 0.5)
 	var snapped_z = snapped(pos.z, 0.9)
 	return "%0.2f_%0.2f" % [snapped_x, snapped_z]
+
+# New function to get hex tile edges for valid road placement
+func get_hex_edges() -> Array:
+	var edges: Array = []
+	for pos in hex_positions:
+		for i in range(6):
+			var angle: float = float(i) * PI / 3.0
+			var edge_pos: Vector3 = pos + Vector3(cos(angle) * hex_scale_factor, 0, sin(angle) * hex_scale_factor)
+			edges.append(edge_pos)
+	return edges

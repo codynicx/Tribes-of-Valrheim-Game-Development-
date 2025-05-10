@@ -31,6 +31,10 @@ import/blender/enabled.web=true
 
 HexField="*res://Scripts/HexField.gd"
 
+[filesystem]
+
+import/blender/enabled.web=true
+
 [input]
 
 rotate_camera={
