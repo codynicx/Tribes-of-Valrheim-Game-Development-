@@ -12,7 +12,6 @@ func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, n
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			quantity -= 1
 			update_label()
-			HexField.spawn_cities()
 			if quantity <= 0:
 				queue_free()
 
