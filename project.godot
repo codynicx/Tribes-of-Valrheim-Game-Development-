@@ -27,14 +27,6 @@ run/main_run_args="--rendering-driver opengl3"
 
 import/blender/enabled.web=true
 
-[autoload]
-
-HexField="*res://Scripts/HexField.gd"
-
-[filesystem]
-
-import/blender/enabled.web=true
-
 [input]
 
 rotate_camera={
