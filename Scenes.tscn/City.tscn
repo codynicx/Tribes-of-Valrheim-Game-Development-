@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cotk3ogwy4aut"]
+[gd_scene load_steps=5 format=3 uid="uid://em2ubx0y2ejl"]
 
-[ext_resource type="Script" uid="uid://b6g8vitm667rf" path="res://Scripts/City.gd" id="1_85jps"]
-[ext_resource type="Script" uid="uid://depfx5ymx31ir" path="res://Scripts/CityArea.gd" id="2_tdwkd"]
+[ext_resource type="Script" path="res://Scripts/City.gd" id="1_85jps"]
+[ext_resource type="Script" path="res://Scripts/CityArea.gd" id="2_tdwkd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tdwkd"]
 

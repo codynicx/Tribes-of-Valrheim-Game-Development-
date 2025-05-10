@@ -6,8 +6,6 @@ extends Node3D
 
 var placing_road = false
 
-var is_dragging = false;
-
 func _ready():
 	# Setup the hex field
 	hex_field.setup(resource_meshes)
@@ -19,13 +17,6 @@ func _on_road_pressed():
 	if road_placer:
 		road_placer.begin_road_placement()
 
-
 func _on_house_pressed():
 	hex_field.spawn_cities()
-	$City.visible = true
-		$City.visible = false
-
-func _on_city_button_pressed() -> void:
-	#hex_field.spawn_cities()
-	$CityButton.visible = false
 	$City.visible = true

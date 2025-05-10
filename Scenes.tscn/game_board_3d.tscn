@@ -10,9 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c6cpa3addny4y" path="res://Scenes.tscn/Placements.tscn" id="7_o1yq4"]
 [ext_resource type="PackedScene" uid="uid://c8o23n7oqhgjb" path="res://Scenes.tscn/road_3d.tscn" id="8_jeorx"]
 [ext_resource type="Script" path="res://Scripts/RoadPlacer.gd" id="8_wj653"]
-[ext_resource type="Texture2D" uid="uid://ctp8ly46s671d" path="res://Assets/288ppi/house.png" id="10_o7khx"]
-[ext_resource type="PackedScene" uid="uid://di6m3v7xeqo1i" path="res://Scenes.tscn/Placements.tscn" id="7_o1yq4"]
-[ext_resource type="PackedScene" uid="uid://cotk3ogwy4aut" path="res://Scenes.tscn/City.tscn" id="9_bq8e0"]
+[ext_resource type="PackedScene" uid="uid://em2ubx0y2ejl" path="res://Scenes.tscn/City.tscn" id="9_bq8e0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ooj2t"]
 render_priority = 0
@@ -75,13 +73,6 @@ script = ExtResource("6_kki3j")
 script = ExtResource("8_wj653")
 road_scene = ExtResource("8_jeorx")
 
-[node name="CityButton" type="Button" parent="."]
-offset_left = 459.0
-offset_top = 591.0
-offset_right = 566.0
-offset_bottom = 622.0
-text = "Show City"
-
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.50502e-06, -1.54972e-06)
 
@@ -123,5 +114,4 @@ layout_mode = 2
 text = "Warriors"
 
 [connection signal="pressed" from="CanvasLayer - UI/Panel/VBoxContainer/Road" to="." method="_on_road_pressed"]
-
-[connection signal="pressed" from="CityButton" to="." method="_on_city_button_pressed"]
+[connection signal="pressed" from="CanvasLayer - UI/Panel/VBoxContainer/House" to="." method="_on_house_pressed"]
