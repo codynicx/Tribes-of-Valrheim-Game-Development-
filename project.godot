@@ -15,6 +15,14 @@ run/main_scene="res://Scenes.tscn/game_board_3d.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+HexField="*res://Scripts/HexField.gd"
+
+[editor]
+
+run/main_run_args="--rendering-driver opengl3"
+
 [filesystem]
 
 import/blender/enabled.web=true

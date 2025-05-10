@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6cpa3addny4y"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wubcv"]
+
+[node name="Placements" type="Node3D"]
+transform = Transform3D(1.40042, 0, 0, 0, 1, 0, 0, 0, 1.24805, 0, 0, 0)
+
+[node name="City" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.585402, 0, 0, 0, 0.0289951, 0, 0, 0, 0.620039, 0, 0, 0)
+mesh = SubResource("CylinderMesh_wubcv")
