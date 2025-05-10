@@ -3,8 +3,7 @@ extends Node3D
 @export var hex_scene: PackedScene
 @export var number_token_scene: PackedScene
 @export var sand: PackedScene
-@export var city: PackedScene
-@export var grid_radius: int = 2 # defines how large the hex grid will be # defines how large the hex grid will be
+@export var grid_radius: int = 2 # defines how large the hex grid will be
 
 var hex_scale_factor: float = 1.5
 var resource_types: Array = ["Stone", "Wood", "Wool", "Meat", "Wheat", "Iron"]
@@ -19,8 +18,6 @@ var resource_distribution: Dictionary = {
 var resource_mesh_instances: Dictionary = {}
 var used_numbers: Array = []
 var hex_positions: Array = [] # Store positions of all hex tiles
-var placed_city_positions: Dictionary = {}
-var is_dragging = false
 
 func setup(resource_meshes: Node) -> void:
 	_load_resource_meshes(resource_meshes)
@@ -53,12 +50,11 @@ func _generate_hex_grid() -> void:
 			if abs(q + r) > grid_radius or (q == 0 and r == 0):
 				continue
 			var hex_position: Vector3 = Vector3(hex_width * (q + r * 0.5), 0.1, hex_height * r)
-			_spawn_hex_tile(q, r, hex_position, resource_pool[i], numbers)
+			_spawn_hex_tile(hex_position, resource_pool[i], numbers)
 			hex_positions.append(hex_position)
 			i += 1
 
-# Function to spawn a hex tile
-func _spawn_hex_tile(q: int, r: int, hex_position: Vector3, resource: String, numbers: Array) -> void:
+func _spawn_hex_tile(hex_position: Vector3, resource: String, numbers: Array) -> void:
 	var hex_instance: Node3D = hex_scene.instantiate()
 	hex_instance.position = hex_position
 	hex_instance.scale = Vector3(hex_scale_factor, 2, hex_scale_factor)
@@ -110,7 +106,7 @@ func _place_yggdrasil() -> void:
 
 func _spawn_sand_background() -> void:
 	var sand_instance: Node3D = sand.instantiate()
-	sand_instance.scale = Vector3(20.2, 1, 17.5)  
+	sand_instance.scale = Vector3(20.2, 1, 17.5)
 	sand_instance.position = Vector3(-0.8, 0.1, 12.6)
 	add_child(sand_instance)
 
@@ -123,41 +119,3 @@ func get_hex_edges() -> Array:
 			var edge_pos: Vector3 = pos + Vector3(cos(angle) * hex_scale_factor, 0, sin(angle) * hex_scale_factor)
 			edges.append(edge_pos)
 	return edges
-
-func spawn_cities():
-	for hex in get_children():
-		if not hex is Node3D:
-			continue
-
-		var hex_position = hex.position
-		var hex_corners = _get_hex_corners(hex_position)
-
-		for corner_position in hex_corners:
-			var key = _snap_position(corner_position)
-			if not placed_city_positions.has(key):
-				placed_city_positions[key] = true
-
-				var city_instance = city.instantiate()
-				city_instance.position = corner_position
-				add_child(city_instance)
-
-
-func _get_hex_corners(center: Vector3) -> Array:
-	var corners = []
-	var radius = hex_scale_factor
-
-	for i in range(6):
-		var angle_deg = 60 * i - 30
-		var angle_rad = deg_to_rad(angle_deg)
-		var x = center.x + radius * cos(angle_rad)
-		var z = center.z + radius * sin(angle_rad)
-		corners.append(Vector3(x, 0.3, z))
-
-	return corners
-
-func _snap_position(pos: Vector3) -> String:
-	var snapped_x = snapped(pos.x, 0.5)
-	var snapped_z = snapped(pos.z, 0.9)
-	return "%0.2f_%0.2f" % [snapped_x, snapped_z]
-
-
