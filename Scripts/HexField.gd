@@ -110,7 +110,7 @@ func _place_yggdrasil() -> void:
 
 func _spawn_sand_background() -> void:
 	var sand_instance: Node3D = sand.instantiate()
-	sand_instance.scale = Vector3(20.2, 1, 17.5)
+	sand_instance.scale = Vector3(20.2, 1, 17.5)  
 	sand_instance.position = Vector3(-0.8, 0.1, 12.6)
 	add_child(sand_instance)
 
